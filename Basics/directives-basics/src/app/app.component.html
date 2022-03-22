@@ -9,10 +9,9 @@
       and visual studio code
       <!-- using ngfor here -->
       <div
-        *ngFor="let item of clickEventTimestamps"
+        *ngFor="let item of clickEventTimestamps; let i = index"
         [ngStyle]="{
-          backgroundColor:
-            clickEventTimestamps.indexOf(item) > 3 ? 'blue' : 'none'
+          backgroundColor: i > 3 ? 'blue' : 'none'
         }"
         [ngClass]="{
           textWhite: clickEventTimestamps.indexOf(item) > 3 ? true : false
