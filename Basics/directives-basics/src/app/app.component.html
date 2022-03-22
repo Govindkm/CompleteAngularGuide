@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button (click)="toggleDisplay()">Display</button>
+    </div>
+    <!-- ng if being used here -->
+    <div *ngIf="display">
+      Some random text to be displayed here as we learn angular using javascript
+      and visual studio code
+      <!-- using ngfor here -->
+      <div
+        *ngFor="let item of clickEventTimestamps"
+        [ngStyle]="{
+          backgroundColor:
+            clickEventTimestamps.indexOf(item) > 3 ? 'blue' : 'none'
+        }"
+        [ngClass]="{
+          textWhite: clickEventTimestamps.indexOf(item) > 3 ? true : false
+        }"
+      >
+        {{ item }}
+      </div>
+    </div>
+  </div>
+</div>
