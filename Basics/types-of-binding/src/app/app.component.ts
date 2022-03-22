@@ -7,11 +7,12 @@ import { TwoWayBindingComponent } from './two-way-binding/two-way-binding.compon
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild(TwoWayBindingComponent) element!:TwoWayBindingComponent;
+  @ViewChild('refele') element!:TwoWayBindingComponent;
   input="initial";
   constructor(){}
   resetInput(){
     console.log("Reset is called");
-    this.element.inputText="";
+    this.input="";
+    this.element.inputText = "";
   }
 }
