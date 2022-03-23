@@ -6,14 +6,14 @@ import { element } from '../server-element/server-element.interface';
   templateUrl: './cockpit.component.html',
   styleUrls: ['./cockpit.component.css']
 })
-export class CockpitComponent implements OnInit {
+export class CockpitComponent implements OnInit{
+  ngOnInit(): void {
+  }
   @Output() changeServerElement: EventEmitter<element[]> = new EventEmitter<element[]>();
   @ViewChild('serverNameElement') newServerName:HTMLInputElement;
   serverElements:element[] = [];
   newServerContent = '';
-  constructor() { }
-  ngOnInit(): void {
-  }
+
   onAddServer(newServerNameElement:HTMLInputElement) {
     console.log(newServerNameElement);
     this.serverElements.push({
@@ -23,6 +23,8 @@ export class CockpitComponent implements OnInit {
     });
     this.changeServerElement.emit(this.serverElements);
   }
+
+  
 
   onAddBlueprint() {
     console.log(this.newServerName);

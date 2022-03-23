@@ -5,3 +5,8 @@
 p {
   color: blue;
 }
+
+#lifecycle {
+  width: fit-content;
+  height: fit-content;
+}

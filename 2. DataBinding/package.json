@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ng2-pdf-viewer": "^7.0.0"
+  }
+}
