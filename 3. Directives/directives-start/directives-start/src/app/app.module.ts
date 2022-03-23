@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { BasicHighlighterDirective } from './directives/basic-highlighter.directive';
 import { BetterHighlighterDirective } from './directives/better-highlighter.directive';
 import { HoverHostListnerDirective } from './directives/hover-host-listner.directive';
+import { UnlessDirective } from './directives/unless.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     BasicHighlighterDirective,
     BetterHighlighterDirective,
-    HoverHostListnerDirective
+    HoverHostListnerDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,
