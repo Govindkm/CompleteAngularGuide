@@ -7,9 +7,9 @@ import { element } from './server-element/server-element.interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements:element[] = [{
-    name:"Tera Baap",
-    type:"blueprint",
-    content:"Maki"
-  }];
+  serverElements:element[] = [];
+
+  onChangeServerElements(elements){
+    this.serverElements = elements;
+  }
 }

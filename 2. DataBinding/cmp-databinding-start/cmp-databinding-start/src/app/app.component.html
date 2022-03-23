@@ -1,5 +1,7 @@
 <div class="container">
-  <app-cockpit></app-cockpit>
+  <app-cockpit
+    (changeServerElement)="onChangeServerElements($event)"
+  ></app-cockpit>
   <hr />
   <div class="row">
     <div class="col-xs-12">
