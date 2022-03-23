@@ -6,6 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  numbers = [1, 2, 3, 4, 5];
+  allNumbers = [1, 2, 3, 4, 5];
   onlyOdd = false;
+
+  numbers():Number[]{
+    if(this.onlyOdd){
+      return this.allNumbers.filter((ele)=>ele%2);
+    }
+
+    return this.allNumbers.filter((ele)=>ele%2==0);
+  }
 }
