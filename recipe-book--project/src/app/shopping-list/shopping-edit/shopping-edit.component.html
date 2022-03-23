@@ -1,0 +1,35 @@
+<div class="row" style="margin: 2rem 0rem">
+  <div class="col-md-6">
+    <form>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="name">Name</label>
+          <input
+            name="name"
+            type="text"
+            id="name"
+            class="form-control"
+            [(ngModel)]="name"
+          />
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="amount"> Amount </label>
+          <input
+            name="amount"
+            type="string"
+            id="amount"
+            class="form-control"
+            [(ngModel)]="amount"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-danger" (click)="onAdd()">Add</button
+          ><button class="btn btn-success">Delete</button
+          ><button class="btn btn-primary" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

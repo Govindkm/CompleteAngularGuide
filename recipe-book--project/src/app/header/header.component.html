@@ -1,0 +1,39 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <!-- container-fluid provides container width 100vw width -->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle"
+        data-toggle="collapse"
+        data-target="#navitems"
+      >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Recipe Book</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navitems">
+      <ul class="nav navbar-nav">
+        <li class="active" (click)="navigate('recipe')">
+          <a href="#">Recipe</a>
+        </li>
+        <li (click)="navigate('shopping list')">
+          <a href="#">Shopping List</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#"
+            >Dropdown <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Save</a></li>
+            <li><a href="#">Fetch</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
