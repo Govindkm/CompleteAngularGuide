@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <button class="btn" appBasicHighlighter (click)="onlyOdd = !onlyOdd">
+      <button
+        class="btn"
+        appBasicHighlighter
+        [appHoverHostListner]="'pink'"
+        secondaryColor="brown"
+        (click)="onlyOdd = !onlyOdd"
+      >
         Only show odd numbers
       </button>
       <br /><br />
