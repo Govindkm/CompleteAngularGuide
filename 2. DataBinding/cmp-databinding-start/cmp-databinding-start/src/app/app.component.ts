@@ -5,7 +5,7 @@ import { element } from './server-element/server-element.interface';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None // ShadowDom, Emulated(default)
 })
 export class AppComponent {
   serverElements:element[] = [];
