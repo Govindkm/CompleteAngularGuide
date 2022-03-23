@@ -22,4 +22,12 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onAddIngredient(ingred:Ingrediennt){
+    this.ingredients.push(ingred);
+  }
+
+  onClearIngredients(){
+    this.ingredients = [];
+  }
+
 }
