@@ -7,7 +7,7 @@ import { element } from './server-element.interface';
   styleUrls: ['./server-element.component.css']
 })
 export class ServerElementComponent implements OnInit {
-  @Input() element: element;
+  @Input('alias') element: element;
   constructor() { }
 
   ngOnInit(): void {
