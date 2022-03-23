@@ -9,7 +9,7 @@
         *ngFor="let element of serverElements"
         [alias]="element"
       >
-        <p>
+        <p #paragraphContent>
           <strong *ngIf="element.type === 'server'" style="color: red">{{
             element.content
           }}</strong>
