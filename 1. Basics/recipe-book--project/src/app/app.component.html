@@ -1,5 +1,5 @@
-<app-header></app-header>
+<app-header (navItem)="changeView($event)"></app-header>
 <div class="container-fluid">
-  <app-recipes></app-recipes>
-  <app-shopping-list></app-shopping-list>
+  <app-recipes *ngIf="view == 'recipe'"></app-recipes>
+  <app-shopping-list *ngIf="view == 'shopping list'"></app-shopping-list>
 </div>
