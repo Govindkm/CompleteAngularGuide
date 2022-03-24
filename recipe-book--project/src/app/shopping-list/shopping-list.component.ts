@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingrediennt } from '../recipes/recipe.interface';
+import { ShoppingListService } from './services/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,27 +8,28 @@ import { Ingrediennt } from '../recipes/recipe.interface';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  ingredients:Ingrediennt[] = [
-    {
-      name:'Potato',
-      amount:"2 kg"
-    },
-    {
-      name:'Tomato',
-      amount:'1 kg'
-    }
-  ]
-  constructor() { }
+  ingredients:Ingrediennt[];
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.ingredients = this.shoppingListService.ingredients;
+    this.shoppingListService.updateIngredient.subscribe((condition)=>{
+      if(condition){
+        this.ingredients = this.shoppingListService.ingredients;
+      }
+    })
   }
 
   onAddIngredient(ingred:Ingrediennt){
-    this.ingredients.push(ingred);
+    this.shoppingListService.addIngredient = ingred;
+  }
+
+  onDeleteIngredient(ingred:Ingrediennt){
+    this.shoppingListService.deleteIngredient(ingred);
   }
 
   onClearIngredients(){
-    this.ingredients = [];
+    this.shoppingListService.clearIngredients();
   }
 
 }

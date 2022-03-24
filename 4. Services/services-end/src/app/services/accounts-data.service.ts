@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { account } from '../interfaces/accounts.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AccountsDataService {
   private _accounts: account[] = [
     {

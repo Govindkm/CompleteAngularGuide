@@ -5,7 +5,8 @@ import { AccountsDataService } from './services/accounts-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers:[AccountsDataService]
 })
 export class AppComponent {
   constructor(private accountService: AccountsDataService){}

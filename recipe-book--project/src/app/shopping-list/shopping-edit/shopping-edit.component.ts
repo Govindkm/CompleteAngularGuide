@@ -10,7 +10,7 @@ export class ShoppingEditComponent implements OnInit {
   name:string;
   amount:string;
 
-  selectedIngredient:Ingrediennt;
+  @Output() selectedIngredient:Ingrediennt;
 
   @Output() addIngredient: EventEmitter<Ingrediennt> = new EventEmitter<Ingrediennt>();
   @Output() deleteIngredient: EventEmitter<Ingrediennt> = new EventEmitter<Ingrediennt>();

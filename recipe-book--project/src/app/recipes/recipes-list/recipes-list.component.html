@@ -9,7 +9,7 @@
     <app-recipe-items
       [recipe]="recipe"
       *ngFor="let recipe of recipes"
-      (click)="selectRecipe.emit(recipe)"
+      (click)="this.recipeService.recipeSelect.emit(recipe)"
     ></app-recipe-items>
   </div>
 </div>
