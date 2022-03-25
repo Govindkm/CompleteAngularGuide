@@ -9,7 +9,9 @@ import { UsersComponent } from "./users/users.component";
 const routes:Routes = [
     {path:'', component:HomeComponent, pathMatch:"full"},
     {path:'servers', component:ServersComponent, pathMatch:"full"},
-    {path:'users', component:UsersComponent, pathMatch:"full"},
+    {path:'users', component:UsersComponent, pathMatch:"full"},    
+    {path:'users/:id', component:UserComponent, pathMatch:"full"},
+    { path: '**', redirectTo:'' }
 ]
 
 @NgModule({
