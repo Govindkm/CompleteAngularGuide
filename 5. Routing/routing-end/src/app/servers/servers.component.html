@@ -3,7 +3,7 @@
     <div class="list-group">
       <a
         [routerLink]="['/servers', server.id, 'edit']"
-        [queryParams]="{ allowEdit: false }"
+        [queryParams]="{ allowEdit: server.id % 2 == 1 }"
         [fragment]="'loading'"
         routerLinkActive="ative"
         class="list-group-item"

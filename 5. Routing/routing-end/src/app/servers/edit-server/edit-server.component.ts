@@ -24,7 +24,8 @@ export class EditServerComponent implements OnInit {
     this.server = this.serversService.getServer(+snapshot.params['id'] || 1);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
-
+    
+    //This will allow the router to forcefully reload the component when the route params changes for this route
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
