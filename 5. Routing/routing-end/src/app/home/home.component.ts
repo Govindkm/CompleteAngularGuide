@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   navigate(){
-    this.router.navigate(['/servers'])
+    this.router.navigate(['/servers', 1, 'edit'], {queryParams: { allowEdit: false}, fragment: "loading"});
   }
 
 }
