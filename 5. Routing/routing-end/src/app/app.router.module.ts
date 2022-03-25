@@ -9,10 +9,13 @@ import { UsersComponent } from "./users/users.component";
 
 const routes:Routes = [
     {path:'', component: HomeComponent, pathMatch:"full"},
-    {path:'servers', component: ServersComponent, pathMatch:"full"},
-    {path:'servers/:id/edit', component: EditServerComponent},
-    {path:'users', component: UsersComponent, pathMatch:"full"},    
-    {path:'users/:id', component: UserComponent, pathMatch:"full"},
+    {path:'servers', component: ServersComponent, children:[
+
+        {path:':id/edit', component: EditServerComponent},
+    ]},
+    {path:'users', component: UsersComponent, children:[
+        {path:':id', component: UserComponent, pathMatch:"full"},
+    ] },
     { path: '**', redirectTo:'' }
 ]
 
