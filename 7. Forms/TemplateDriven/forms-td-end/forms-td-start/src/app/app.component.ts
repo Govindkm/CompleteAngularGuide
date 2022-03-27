@@ -13,6 +13,6 @@ export class AppComponent {
   }
 
   onSubmit(){
-    console.log(this.form);
+    console.log(this.form.valid);
   }
 }
