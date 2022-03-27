@@ -5,11 +5,5 @@ import { Component, EventEmitter, Output } from "@angular/core";
     styleUrls:["./header.component.css"]
 })
 export class HeaderComponent{
-@Output('navItem') item: EventEmitter<Component> = new EventEmitter<Component>();
 constructor(){}
-navigate(event){
-    console.log(event);
-    this.item.emit(event);
-}
-
 }

@@ -16,21 +16,27 @@
     </div>
     <div class="collapse navbar-collapse" id="navitems">
       <ul class="nav navbar-nav">
-        <li class="active" (click)="navigate('recipe')">
-          <a href="#">Recipe</a>
+        <li
+          [routerLink]="['/recipes']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a>Recipe</a>
         </li>
-        <li (click)="navigate('shopping list')">
-          <a href="#">Shopping List</a>
+        <li
+          [routerLink]="['/shoppinglist']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a>Shopping List</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdownHelper>
-          <a class="dropdown-toggle" href="#"
-            >Dropdown <span class="caret"></span
-          ></a>
+          <a class="dropdown-toggle">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Save</a></li>
-            <li><a href="#">Fetch</a></li>
+            <li><a>Save</a></li>
+            <li><a>Fetch</a></li>
           </ul>
         </li>
       </ul>
