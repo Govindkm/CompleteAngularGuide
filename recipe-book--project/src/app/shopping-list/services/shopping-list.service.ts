@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Ingrediennt } from "src/app/recipes/recipe.interface";
 
@@ -7,7 +7,7 @@ import { Ingrediennt } from "src/app/recipes/recipe.interface";
 })
 export class ShoppingListService{
     updateIngredient:Subject<boolean> = new Subject<boolean>();
-    selectedIngredient: EventEmitter<Ingrediennt> = new EventEmitter<Ingrediennt>();
+    selectedIngredient: Subject<Ingrediennt> = new Subject<Ingrediennt>();
 
     private _ingredients:Ingrediennt[] = [
         {

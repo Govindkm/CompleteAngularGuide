@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Ingrediennt } from '../recipes/recipe.interface';
 import { ShoppingListService } from './services/shopping-list.service';
 
@@ -7,21 +8,22 @@ import { ShoppingListService } from './services/shopping-list.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients:Ingrediennt[];
+  subscriptions:Subscription[] = [];
   constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.ingredients;
-    this.shoppingListService.updateIngredient.subscribe((condition)=>{
+    this.subscriptions.push(this.shoppingListService.updateIngredient.subscribe((condition)=>{
       if(condition){
         this.ingredients = this.shoppingListService.ingredients;
       }
-    })
+    }))
   }
 
   onSelectIngredient(item:Ingrediennt){
-    this.shoppingListService.selectedIngredient.emit(item);
+    this.shoppingListService.selectedIngredient.next(item);
   }
 
   onAddIngredient(ingred:Ingrediennt){
@@ -35,6 +37,10 @@ export class ShoppingListComponent implements OnInit {
 
   onClearIngredients(){
     this.shoppingListService.clearIngredients();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subs=>subs.unsubscribe());
   }
 
 }
