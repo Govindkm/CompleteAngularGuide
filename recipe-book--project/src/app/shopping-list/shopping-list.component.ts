@@ -20,11 +20,16 @@ export class ShoppingListComponent implements OnInit {
     })
   }
 
+  onSelectIngredient(item:Ingrediennt){
+    this.shoppingListService.selectedIngredient.emit(item);
+  }
+
   onAddIngredient(ingred:Ingrediennt){
     this.shoppingListService.addIngredient = ingred;
   }
 
   onDeleteIngredient(ingred:Ingrediennt){
+    console.log(ingred);
     this.shoppingListService.deleteIngredient(ingred);
   }
 

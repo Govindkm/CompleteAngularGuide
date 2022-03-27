@@ -3,6 +3,7 @@
     <app-shopping-edit
       (addIngredient)="onAddIngredient($event)"
       (clearIngredients)="onClearIngredients()"
+      (deleteIngredient)="onDeleteIngredient($event)"
     ></app-shopping-edit>
   </div>
   <br />
@@ -12,6 +13,7 @@
   <a
     class="list-group-item"
     style="cursor: pointer"
+    (click)="onSelectIngredient(item)"
     *ngFor="let item of ingredients"
     >{{ item.name }} ({{ item.amount }})</a
   >

@@ -1,6 +1,6 @@
 <div class="row" style="margin: 2rem 0rem">
   <div class="col-md-6">
-    <form>
+    <form (ngSubmit)="onAdd(shoppingListForm)" #shoppingListForm="ngForm">
       <div class="row">
         <div class="col-md-6 form-group">
           <label for="name">Name</label>
@@ -9,7 +9,8 @@
             type="text"
             id="name"
             class="form-control"
-            [(ngModel)]="name"
+            [(ngModel)]="Ingredient.name"
+            required
           />
         </div>
         <div class="col-md-6 form-group">
@@ -19,15 +20,29 @@
             type="string"
             id="amount"
             class="form-control"
-            [(ngModel)]="amount"
+            [(ngModel)]="Ingredient.amount"
+            required
           />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <button class="btn btn-danger" (click)="onAdd()">Add</button
-          ><button class="btn btn-success">Delete</button
-          ><button class="btn btn-primary" (click)="onClear()">Clear</button>
+          <button
+            class="btn btn-danger"
+            type="submit"
+            [disabled]="shoppingListForm.invalid"
+          >
+            Add</button
+          ><button
+            class="btn btn-success"
+            type="button"
+            (click)="onDelete()"
+            [disabled]="shoppingListForm.invalid"
+          >
+            Delete</button
+          ><button class="btn btn-primary" type="button" (click)="onClear()">
+            Clear
+          </button>
         </div>
       </div>
     </form>
