@@ -1,11 +1,12 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Ingrediennt } from "src/app/recipes/recipe.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ShoppingListService{
-    updateIngredient:EventEmitter<boolean> = new EventEmitter<boolean>();
+    updateIngredient:Subject<boolean> = new Subject<boolean>();
 
     private _ingredients:Ingrediennt[] = [
         {
@@ -26,26 +27,26 @@ export class ShoppingListService{
 
     public set addIngredient(ingredient:Ingrediennt){
         this._ingredients.push(ingredient);
-        this.updateIngredient.emit(true);
+        this.updateIngredient.next(true);
     }
 
     public set addIngredients(ingredient:Ingrediennt[]){
 
         //spread operator to add ingredients
         this._ingredients.push(...ingredient);
-        this.updateIngredient.emit(true);
+        this.updateIngredient.next(true);
     }
 
     public deleteIngredient(ingredient: Ingrediennt){
         this._ingredients = this._ingredients.filter((ingred)=>{
             return ingred.name!==ingredient.name && ingred.amount !== ingredient.amount;
         });
-        this.updateIngredient.emit(true);
+        this.updateIngredient.next(true);
     }
 
     public clearIngredients(){
         this._ingredients = [];
-        this.updateIngredient.emit(true);
+        this.updateIngredient.next(true);
     }
     
 }
