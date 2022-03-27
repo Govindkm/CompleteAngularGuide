@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,14 +23,24 @@ export class HomeComponent implements OnInit, OnDestroy {
         let count=0;
         setInterval(()=>{
           observer.next(count--);
-        }, timeout)
+          if(count<-5){
+            observer.complete();
+          }
+        }, timeout);
       })
     }
 
     //Custom interval
-    this.subscription.push(customInterval(1000).subscribe((data)=>{
-      console.log('Custom Interval : ', data);
-    }));
+    this.subscription.push(customInterval(1000).pipe(map((data:number)=>{
+      return "Custom Intrval : " + data;
+    })).subscribe((data)=>{
+      console.log(data);
+    },
+    error=>{console.log(error)},
+    ()=>{
+      console.log('Completed!!!');
+    }
+    ));
 
   }
 
