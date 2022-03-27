@@ -12,11 +12,13 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { FormsModule } from '@angular/forms';
 import { DropdownHelperDirective } from './directives/dropdown-helper.directive';
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    HeaderComponent, RecipesComponent, RecipesListComponent, RecipeDetailsComponent, RecipeItemsComponent, ShoppingListComponent, ShoppingEditComponent, DropdownHelperDirective
+    HeaderComponent, RecipesComponent, RecipesListComponent, RecipeDetailsComponent, RecipeItemsComponent, ShoppingListComponent, ShoppingEditComponent, DropdownHelperDirective, RecipeStartComponent, RecipeEditComponent
   ],
   imports: [
     BrowserModule,

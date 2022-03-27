@@ -1,15 +1,18 @@
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-primary">Add Recipe</button>
+    <button class="btn btn-success">Add Recipe</button>
   </div>
 </div>
 <br />
 <div class="row">
   <div class="col-md-12">
-    <app-recipe-items
-      [recipe]="recipe"
+    <div
+      class="list-group-item clearfix"
+      [routerLink]="['/recipes', recipe.id]"
+      routerLinkActive="active"
       *ngFor="let recipe of recipes"
-      (click)="this.recipeService.recipeSelect.emit(recipe)"
-    ></app-recipe-items>
+    >
+      <app-recipe-items [recipe]="recipe"></app-recipe-items>
+    </div>
   </div>
 </div>
