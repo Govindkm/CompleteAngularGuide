@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-success">Add Recipe</button>
+    <button class="btn btn-success" [routerLink]="['new']">Add Recipe</button>
   </div>
 </div>
 <br />
@@ -11,6 +11,7 @@
       [routerLink]="['/recipes', recipe.id]"
       routerLinkActive="active"
       *ngFor="let recipe of recipes"
+      style="cursor: pointer"
     >
       <app-recipe-items [recipe]="recipe"></app-recipe-items>
     </div>

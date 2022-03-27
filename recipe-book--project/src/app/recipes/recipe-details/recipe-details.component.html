@@ -23,7 +23,9 @@
       </button>
       <ul class="dropdown-menu">
         <li (click)="addToShoppingList()"><a>To Shoppiing List</a></li>
-        <li><a>Edit Recipe</a></li>
+        <li>
+          <a [routerLink]="['edit']" routerLinkActive="active">Edit Recipe</a>
+        </li>
         <li><a>Delete Recipe</a></li>
       </ul>
     </div>
