@@ -5,6 +5,10 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SubjectService implements OnInit {
+
+  //Use Subjects only if the communication required is between the components. It is not suitable for dom events and therefore instead use EventEmitter instead of subjects for creating events that need to handled on dom
+  
+
   activate:Subject<boolean>;
   isActivated: boolean = false;
   constructor() {
