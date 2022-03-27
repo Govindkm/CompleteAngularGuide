@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { SubjectService } from '../subject.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,14 @@ import { map } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   subscription:Subscription[] = [];
-  constructor() { }
+  isActivated:boolean = false;
+  constructor(private subjectService: SubjectService) { }
 
   ngOnInit() {
+    this.subjectService.activate.subscribe((data)=>{
+      this.isActivated = data;
+    })
+
     //Subscription should be closed otherwise it causes memory leaks which will end up utilizing the memory resources
     this.subscription.push(interval(1000).subscribe((data)=>{
       console.log('Interval : ', data);
@@ -31,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     //Custom interval
-    this.subscription.push(customInterval(1000).pipe(map((data:number)=>{
+    this.subscription.push(customInterval(1000).pipe(filter((data:number)=>{return data%2==0}), map((data:number)=>{
       return "Custom Intrval : " + data;
     })).subscribe((data)=>{
       console.log(data);
