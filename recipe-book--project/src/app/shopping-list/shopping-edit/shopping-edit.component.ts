@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Ingrediennt } from 'src/app/recipes/recipe.interface';
@@ -15,7 +15,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   Ingredient:Ingrediennt = {name:'', amount:''};
   subcriptions:Subscription[] = [];
-
+  mode:boolean;
   @Output() addIngredient: EventEmitter<Ingrediennt> = new EventEmitter<Ingrediennt>();
   @Output() deleteIngredient: EventEmitter<Ingrediennt> = new EventEmitter<Ingrediennt>();
   @Output() clearIngredients: EventEmitter<null> = new EventEmitter();
@@ -25,6 +25,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subcriptions.push(this.shoppingListService.selectedIngredient.subscribe((data)=>{
       this.Ingredient=data;
+      this.mode = true;
     }))
   }
 
@@ -32,6 +33,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     if(shoppingListForm.valid){
       this.addIngredient.emit(this.Ingredient);
       this.Ingredient={name:'', amount:''};
+      this.mode = false;
     }
     
   }

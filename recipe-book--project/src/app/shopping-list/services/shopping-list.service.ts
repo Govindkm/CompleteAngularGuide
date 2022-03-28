@@ -27,14 +27,30 @@ export class ShoppingListService{
     }
 
     public set addIngredient(ingredient:Ingrediennt){
-        this._ingredients.push(ingredient);
+        let item = this._ingredients.find((item)=>item.name == ingredient.name);
+        if(item){
+            item.amount = ingredient.amount;
+        }else{
+            this._ingredients.push(ingredient);
+        }
         this.updateIngredient.next(true);
     }
 
     public set addIngredients(ingredient:Ingrediennt[]){
 
         //spread operator to add ingredients
-        this._ingredients.push(...ingredient);
+        ingredient.forEach(item=>{
+            let i = this._ingredients.find((i)=>i.name==item.name);
+            if(i)
+            {
+                let unit = i.amount.split(' ')[1];
+                i.amount = (+i.amount.split(' ')[0] + +item.amount.split(' ')[0]) + ' ' + unit;
+            }
+            else{
+                this.addIngredient = item;
+            }
+        });
+
         this.updateIngredient.next(true);
     }
 

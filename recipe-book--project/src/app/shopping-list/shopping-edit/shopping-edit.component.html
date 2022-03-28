@@ -32,7 +32,7 @@
             type="submit"
             [disabled]="shoppingListForm.invalid"
           >
-            Add</button
+            {{ mode ? "Edit" : "Add" }}</button
           ><button
             class="btn btn-success"
             type="button"
