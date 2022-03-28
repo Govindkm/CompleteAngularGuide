@@ -7,14 +7,14 @@ import { Recipe } from "../recipe.interface";
 export class RecipeService{
     private _recipes: Recipe[] = [
         {
-        id:'1',
+        id:'0',
         name:'Samosa', 
         description: 'A samosa is a fried or baked pastry with a savory filling.', 
         imagePath:'https://static.toiimg.com/thumb/61050397.cms?width=1200&height=900',        
         ingredient:[{name:'Potatoes', amount:'2 kg'}, {name: 'Flour', amount:'4 kg'}]
         },
         {
-          id:'2',
+          id:'1',
           name:'litti chokha',
           description: 'Litti, along with chokha, is a complete meal.',
           imagePath: 'https://static.toiimg.com/thumb/53188495.cms?width=1200&height=900',
@@ -37,7 +37,19 @@ export class RecipeService{
     }
 
     public set recipe(recipe: Recipe){
-        this._recipes.push(recipe);
+        if(+recipe.id<=this._recipes.length)
+            {
+                let item = this._recipes.find((i)=>i.id == recipe.id);
+                item.description = recipe.description;
+                item.name = recipe.name;
+                item.imagePath = recipe.imagePath;
+                item.ingredient = recipe.ingredient;
+            }
+        else
+        {
+            recipe.id = this._recipes.length.toString();
+            this._recipes.push(recipe);
+        }
     }
     
 }
