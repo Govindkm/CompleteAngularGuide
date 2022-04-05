@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     this.onFetchPosts();
   }
 
-  onCreatePost(postData: { title: string; content: string }) {
+  onCreatePost(postData: Post) {
     // Send Http request
     this.http
       .post(
