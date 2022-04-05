@@ -14,7 +14,7 @@ export class DataserviceService {
     // Send Http request
     this.http
       .post(
-        'https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',
+        this.URL,
         postData
       )
       .subscribe(responseData => {
@@ -24,7 +24,7 @@ export class DataserviceService {
 
   fetchPosts(){
     // Send Http request
-    return this.http.get<{[key:string]:Post}>('https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json')
+    return this.http.get<{[key:string]:Post}>(this.URL)
     .pipe(map(data=>{
       let outputArray:Post[] = []
       for (const key in data){
@@ -32,5 +32,9 @@ export class DataserviceService {
       }
       return outputArray;
     }))
+  }
+
+  clearPosts(){
+    return this.http.delete(this.URL);
   }
 }

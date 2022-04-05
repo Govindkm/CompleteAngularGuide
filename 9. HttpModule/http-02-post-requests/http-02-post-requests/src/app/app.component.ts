@@ -32,5 +32,6 @@ export class AppComponent implements OnInit {
 
   onClearPosts() {
     // Send Http request
+    this.dataService.clearPosts().subscribe(data => console.log(this.loadedPosts = []));
   }
 }
