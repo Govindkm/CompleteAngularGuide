@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
   constructor(private dataService:DataserviceService) {}
 
   ngOnInit() {
+    this.dataService.error.subscribe(data => {
+      this.error = data;
+    })
     this.onFetchPosts();
   }
 

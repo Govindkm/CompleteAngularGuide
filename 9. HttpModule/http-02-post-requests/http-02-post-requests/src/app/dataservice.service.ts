@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post } from './Post.interface';
 
@@ -7,6 +8,7 @@ import { Post } from './Post.interface';
   providedIn: 'root'
 })
 export class DataserviceService {
+  error: Subject<string> = new Subject();
   private URL:string = 'https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json'; 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +21,9 @@ export class DataserviceService {
       )
       .subscribe(responseData => {
         console.log(responseData);
+      }, 
+      error => {
+        this.error.next(error.message);
       });
   }
 
