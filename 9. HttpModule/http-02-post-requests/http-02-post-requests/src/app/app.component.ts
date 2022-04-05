@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Post } from './Post.interface';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +13,15 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onFetchPosts();
+  }
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
     this.http
       .post(
-        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        'https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',
         postData
       )
       .subscribe(responseData => {
@@ -27,6 +31,18 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.http.get<{[key:string]:Post}>('https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json')
+    .pipe(map(data=>{
+      let outputArray:Post[] = []
+      for (const key in data){
+        outputArray.push({...data[key], id:key});
+      }
+      return outputArray;
+    }))
+    .subscribe(data=>{
+      debugger;
+      this.loadedPosts = data;
+    })
   }
 
   onClearPosts() {
