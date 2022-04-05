@@ -31,13 +31,17 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.recipeForm.value['ingredient'].map(element => {
+      element.amount = `${element.amount} kg`;
+    })
     const newRecipe: Recipe = {
       name: this.recipeForm.value['name'],
       description: this.recipeForm.value['description'],
       imagePath:this.recipeForm.value['imagePath'],
-      ingredient:this.recipeForm.value['ingredients'],
+      ingredient:this.recipeForm.value['ingredient'],
       id: this.id
     }
+    this.recipeService.recipe = newRecipe;
     this.onCancel();
   }
 
@@ -76,8 +80,9 @@ export class RecipeEditComponent implements OnInit {
           recipeIngredients.push(
             new FormGroup({
               'name': new FormControl(ingredient.name, Validators.required),
-              'amount': new FormControl(ingredient.amount, [
-                Validators.required
+              'amount': new FormControl(ingredient.amount.split(' ')[0], [
+                Validators.required,
+                Validators.min(1)
               ])
             })
           );
