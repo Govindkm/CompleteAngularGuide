@@ -1,7 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Component,  OnInit } from '@angular/core';
 import { Post } from './Post.interface';
+import { DataserviceService } from './dataservice.service';
 
 @Component({
   selector: 'app-root',
@@ -12,36 +11,20 @@ export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private dataService:DataserviceService) {}
 
   ngOnInit() {
     this.onFetchPosts();
   }
 
   onCreatePost(postData: Post) {
-    // Send Http request
-    this.http
-      .post(
-        'https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',
-        postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+    this.dataService.createPost(postData);
+    this.onFetchPosts();
   }
 
   onFetchPosts() {
-    // Send Http request
     this.isFetching = true;
-    this.http.get<{[key:string]:Post}>('https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json')
-    .pipe(map(data=>{
-      let outputArray:Post[] = []
-      for (const key in data){
-        outputArray.push({...data[key], id:key});
-      }
-      return outputArray;
-    }))
-    .subscribe(data=>{
+    this.dataService.fetchPosts().subscribe(data => {
       this.isFetching = false;
       this.loadedPosts = data;
     })
