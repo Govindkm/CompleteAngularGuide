@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -27,9 +27,12 @@ export class DataserviceService {
       });
   }
 
-  fetchPosts(){
+  fetchPosts(params?){
     // Send Http request
-    return this.http.get<{[key:string]:Post}>(this.URL)
+    return this.http.get<{[key:string]:Post}>(this.URL, {
+      headers:{'Accept':'application/xml; charset=utf-8'},
+      params:params || {'print':'pretty'}
+    })
     .pipe(map(data=>{
       let outputArray:Post[] = []
       for (const key in data){
