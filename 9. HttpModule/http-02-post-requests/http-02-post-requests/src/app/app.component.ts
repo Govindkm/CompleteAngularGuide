@@ -9,7 +9,8 @@ import { Post } from './Post.interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
+  isFetching: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.isFetching = true;
     this.http.get<{[key:string]:Post}>('https://ng-complete-guide-govind-default-rtdb.asia-southeast1.firebasedatabase.app/post.json')
     .pipe(map(data=>{
       let outputArray:Post[] = []
@@ -40,7 +42,7 @@ export class AppComponent implements OnInit {
       return outputArray;
     }))
     .subscribe(data=>{
-      debugger;
+      this.isFetching = false;
       this.loadedPosts = data;
     })
   }
