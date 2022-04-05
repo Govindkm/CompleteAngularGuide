@@ -10,7 +10,7 @@ import { DataserviceService } from './dataservice.service';
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching: boolean = false;
-
+  error:String = '';
   constructor(private dataService:DataserviceService) {}
 
   ngOnInit() {
@@ -27,7 +27,11 @@ export class AppComponent implements OnInit {
     this.dataService.fetchPosts().subscribe(data => {
       this.isFetching = false;
       this.loadedPosts = data;
-    })
+    },
+    error => {
+      this.error = error.message
+    }
+    )
   }
 
   onClearPosts() {
