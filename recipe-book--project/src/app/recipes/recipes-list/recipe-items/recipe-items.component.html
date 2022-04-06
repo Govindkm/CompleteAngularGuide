@@ -1,7 +1,7 @@
 <div class="pull-left">
   <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
   <p class="list-group-item-text">
-    {{ recipe.description }}
+    {{ recipe.description | shortner: 0:80 }}
   </p>
 </div>
 <div class="pull-right">
