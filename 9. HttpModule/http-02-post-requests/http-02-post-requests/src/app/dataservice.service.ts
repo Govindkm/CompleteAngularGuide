@@ -17,7 +17,13 @@ export class DataserviceService {
     this.http
       .post(
         this.URL,
-        postData
+        postData,
+        {
+          // By setting this we get the entire response object inside the subscribe instead of parsed body.
+          observe: 'response',
+          // Tell angular about the type of response data (we can tell if we want it to be xml, text or any blob so that it will parse accordingly)
+          responseType: 'json'
+        }
       )
       .subscribe(responseData => {
         console.log(responseData);
