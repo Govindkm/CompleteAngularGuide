@@ -44,8 +44,8 @@ export class RecipeEditComponent implements OnInit {
       ingredient:this.recipeForm.value['ingredient'],
       id: this.id
     }
+    debugger;
     this.recipeService.recipe = newRecipe;
-    this.onCancel();
   }
 
   onAddIngredient() {
