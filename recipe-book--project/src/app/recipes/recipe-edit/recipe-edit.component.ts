@@ -17,6 +17,9 @@ export class RecipeEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
               private router: Router) {
+                route.data.subscribe((data)=>{
+                  data[0].forEach(item => recipeService.recipe = item)
+                })
   }
 
   ngOnInit() {

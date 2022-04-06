@@ -12,7 +12,7 @@ const routes:Routes = [
         {path:'', component:RecipeStartComponent},
         {path:'new', component:RecipeEditComponent},
         {path:':id', component:RecipeDetailsComponent, resolve:[RecipeResolver]},        
-        {path:':id/edit', component:RecipeEditComponent}
+        {path:':id/edit', component:RecipeEditComponent, resolve:[RecipeResolver]}
     ]},
     {path:'shoppinglist', component:ShoppingListComponent},
     {path:'', redirectTo:'/recipes', pathMatch:'full'},
