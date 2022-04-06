@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, Subscription, take, takeUntil } from 'rxjs';
 import { Recipe } from '../recipe.interface';
 import { RecipeService } from '../services/recipe.service';
@@ -11,7 +12,7 @@ import { RecipeService } from '../services/recipe.service';
 export class RecipesListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   unsubscribeNotifier = new Subject()
-  constructor(private recipeService: RecipeService) { 
+  constructor(private recipeService: RecipeService, private activatedRoute: ActivatedRoute) { 
 
   }
 

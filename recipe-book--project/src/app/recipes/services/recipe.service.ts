@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Subject } from "rxjs";
-import { DataStorageService } from "src/app/Shared/data-storage.service";
+import { DataStorageService } from "src/app/shared/data-storage.service";
 import { Recipe } from "../recipe.interface";
 
 @Injectable({
