@@ -41,6 +41,8 @@ export class RecipeService{
         else{
             this._recipes.push(recipe);
         }
+
+        this.saveRecipes();
     }
 
     public saveRecipes(){
