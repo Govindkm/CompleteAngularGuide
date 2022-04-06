@@ -10,7 +10,7 @@ export class RecipeService{
     private _recipes: Recipe[] = [];
     
     recipeSelect: EventEmitter<Recipe> = new EventEmitter<Recipe>();
-    getAllRecipes: Subject<Recipe[]> = new Subject();
+    private getAllRecipes: Subject<Recipe[]> = new Subject();
 
     constructor(private dataStorage: DataStorageService){}
 
@@ -30,19 +30,26 @@ export class RecipeService{
     }
 
     public set recipe(recipe: Recipe){
-        if(+recipe.id<=this._recipes.length)
-            {
-                let item = this._recipes.find((i)=>i.id == recipe.id);
-                item.description = recipe.description;
-                item.name = recipe.name;
-                item.imagePath = recipe.imagePath;
-                item.ingredient = recipe.ingredient;
-            }
-        else
-        {
-            recipe.id = this._recipes.length.toString();
+        let found: Recipe;
+        if(found = this._recipes.find(r => r.id === recipe.id)){
+            found.description = recipe.description;
+            found.ingredient = recipe.ingredient;
+            found.imagePath = recipe.imagePath;
+            found.name = recipe.name;
+            found.id = recipe.id;
+        }
+        else{
             this._recipes.push(recipe);
         }
+    }
+
+    public saveRecipes(){
+        this.dataStorage.saveRecipes(this._recipes);
+    }
+
+    public deleteRecipe(recipe:Recipe){
+        this._recipes = this._recipes.filter((item)=>item.id != recipe.id);
+        this.getAllRecipes.next(this._recipes);
     }
     
 }

@@ -26,7 +26,7 @@
         <li>
           <a [routerLink]="['edit']" routerLinkActive="active">Edit Recipe</a>
         </li>
-        <li><a>Delete Recipe</a></li>
+        <li (click)="onDelete()"><a>Delete Recipe</a></li>
       </ul>
     </div>
   </div>

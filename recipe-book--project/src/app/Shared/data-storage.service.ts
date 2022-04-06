@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { Recipe } from "../recipes/recipe.interface";
+import { RecipeService } from "../recipes/services/recipe.service";
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,7 @@ export class DataStorageService{
                     id: recipeKey,
                     name:  data[recipeKey].name,
                     imagePath: data[recipeKey].imagePath,
-                    ingredient: data[recipeKey].ingredient
+                    ingredient: data[recipeKey] ? data[recipeKey].ingredient : []
                 }
                 recipesArray.push(recipe);
             }
@@ -27,7 +28,9 @@ export class DataStorageService{
         }));
     }
 
-    addRecipe(recipe: Recipe){
-        this.http.post(`${this._URL}recipes.json`, recipe).subscribe((data)=>{console.log(data)});
+    saveRecipes(recipes:Recipe[]){
+        return this.http.put(`${this._URL}recipes.json`, recipes).subscribe((data)=>{
+            console.log(data);
+        })
     }
 }
