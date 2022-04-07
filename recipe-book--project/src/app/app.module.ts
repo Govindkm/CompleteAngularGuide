@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ShortTextPipe } from './shared/shortner.pipe';
+import { AuthComponent } from './authentication/auth.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ShortTextPipe } from './shared/shortner.pipe';
     DropdownHelperDirective, 
     RecipeStartComponent, 
     RecipeEditComponent,
-    ShortTextPipe
+    ShortTextPipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

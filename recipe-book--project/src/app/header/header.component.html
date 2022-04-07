@@ -26,6 +26,14 @@
         >
           <a>Shopping List</a>
         </li>
+
+        <li
+          [routerLink]="['/auth']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a>Authenticate</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdownHelper>
