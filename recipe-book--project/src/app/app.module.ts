@@ -17,19 +17,23 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ShortTextPipe } from './shared/shortner.pipe';
 import { AuthComponent } from './authentication/auth.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
     HeaderComponent,
-    RecipesComponent, 
-    RecipesListComponent, 
-    RecipeDetailsComponent, 
-    RecipeItemsComponent, 
-    ShoppingListComponent, 
-    ShoppingEditComponent, 
-    DropdownHelperDirective, 
-    RecipeStartComponent, 
+    RecipesComponent,
+    RecipesListComponent,
+    RecipeDetailsComponent,
+    RecipeItemsComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent,
+    DropdownHelperDirective,
+    RecipeStartComponent,
     RecipeEditComponent,
     ShortTextPipe,
     AuthComponent
@@ -40,6 +44,9 @@ import { AuthComponent } from './authentication/auth.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
   ],
   providers: [],
   bootstrap: [AppComponent]
