@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,11 +17,19 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ShortTextPipe } from './shared/shortner.pipe';
 import { AuthComponent } from './authentication/auth.component';
+
+//This is not working.
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+
+//This is working.
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire/compat';
 
+import firebase from 'firebase/compat/app';
+
+firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,11 +52,12 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
